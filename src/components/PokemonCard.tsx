@@ -9,6 +9,7 @@ function PokemonCard({pokemon}: {pokemon: PokemonCard}) {
   return (
 
     <figure>
+        <h3>Clique pour afficher ton pokémon préféré !</h3>
         {pokemon.imgSrc !== undefined ? (
             <img src={pokemon.imgSrc} alt={pokemon.name} />
         ) : (
@@ -16,7 +17,7 @@ function PokemonCard({pokemon}: {pokemon: PokemonCard}) {
         )}
     
         <figcaption>
-            <p>{pokemon.name}</p>
+            <h1>{pokemon.name}</h1>
         </figcaption>
     </figure>
   );
