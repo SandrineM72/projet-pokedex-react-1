@@ -1,34 +1,72 @@
 import { useState } from "react";
-import viteLogo from "/vite.svg";
-import reactLogo from "./assets/react.svg";
 import "./App.css";
 
+import PokemonCard from "./components/PokemonCard";
+
+
+
+
+const pokemonList = [
+
+  {
+    name: "bulbasaur",
+    imgSrc:
+      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
+  },
+  {
+    name: "charmander",
+    imgSrc:
+      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png",
+  },
+  {
+    name: "squirtle",
+    imgSrc:
+      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/7.png",
+  },
+  {
+    name: "pikachu",
+    imgSrc:
+      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png",
+  },
+  {
+    name: "mew",
+  },
+
+];
+
+
 function App() {
-  const [count, setCount] = useState(0);
+	const [pokemonName, setPokemonName] = useState("pikachu");
+
+	const pokemon = pokemonList.find((pokemon) => pokemon.name === pokemonName);
+
+	if (pokemon == null) {
+		throw new Error("invalid pokemon name");
+
+	}
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank" rel="noreferrer">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank" rel="noreferrer">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button type="button" onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+
+    <div>
+      <PokemonCard pokemon={pokemon} />
+
+      <nav >
+
+        {pokemonList.map((pokemon) =>
+		<button key={pokemon.name} onClick={() => setPokemonName(pokemon.name)}>
+
+		<img src={pokemon.imgSrc}  style={{ width: '30px', height: '30px' }} />
+
+		<p>{pokemon.name}</p>
+		
+		</button> )
+
+		}
+
+      </nav>
+
+    </div>
+
   );
 }
 
