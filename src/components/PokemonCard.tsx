@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 interface PokemonCard {
     name: string;
     imgSrc?: string;
@@ -6,12 +8,31 @@ interface PokemonCard {
 
 function PokemonCard({pokemon}: {pokemon: PokemonCard}) {
 
+    function randomColor(currentColor?: string) {
+        const colors = ["green", "blue", "pink", "salmon"];
+        const availableColors = colors.filter(color => color !== currentColor);
+        return availableColors [Math.floor(Math.random() * availableColors.length)];
+    }
+
+    const [bgColor, setBgColor] = useState(randomColor());
+
+    function changeColor() {
+        setBgColor(prevColor => randomColor(prevColor));
+    }
+
   return (
 
     <figure>
         <h3>Clique pour afficher ton pokémon préféré !</h3>
         {pokemon.imgSrc !== undefined ? (
-            <img src={pokemon.imgSrc} alt={pokemon.name} />
+            <img
+                src={pokemon.imgSrc}
+                alt={pokemon.name} 
+                className={`card-img ${bgColor}`}
+                style={{cursor:"pointer"}}
+                onClick={changeColor}
+            />
+
         ) : (
             <p><i>image manquante</i></p>
         )}

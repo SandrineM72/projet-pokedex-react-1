@@ -48,7 +48,7 @@ function App() {
   return (
 
     <div>
-      <PokemonCard pokemon={pokemon} />
+      <PokemonCard key={pokemon.name} pokemon={pokemon} />
 
       <nav >
 
