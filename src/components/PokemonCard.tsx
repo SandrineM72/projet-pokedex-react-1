@@ -9,7 +9,7 @@ interface PokemonCard {
 function PokemonCard({pokemon}: {pokemon: PokemonCard}) {
 
     function randomColor(currentColor?: string) {
-        const colors = ["green", "blue", "pink", "salmon"];
+        const colors = ["green", "blue", "pink", "salmon", "yellow"];
         const availableColors = colors.filter(color => color !== currentColor);
         return availableColors [Math.floor(Math.random() * availableColors.length)];
     }
@@ -23,7 +23,8 @@ function PokemonCard({pokemon}: {pokemon: PokemonCard}) {
   return (
 
     <figure>
-        <h3>Clique pour afficher ton pokémon préféré !</h3>
+        <h3>Clique ci-dessus pour afficher ton pokémon préféré !</h3>
+
         {pokemon.imgSrc !== undefined ? (
             <img
                 src={pokemon.imgSrc}
