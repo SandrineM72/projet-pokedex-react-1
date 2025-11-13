@@ -1,10 +1,8 @@
 import { useState } from "react";
+import { useEffect} from "react";
 import "./App.css";
-
 import PokemonCard from "./components/PokemonCard";
-
-
-
+import NavBar from "./components/NavBar";
 
 const pokemonList = [
 
@@ -36,6 +34,15 @@ const pokemonList = [
 
 
 function App() {
+
+  useEffect(
+    () => {
+      alert ("Salut les pokemons !");
+    },
+    []
+  );
+
+
 	const [pokemonName, setPokemonName] = useState("pikachu");
 
 	const pokemon = pokemonList.find((pokemon) => pokemon.name === pokemonName);
@@ -48,22 +55,9 @@ function App() {
   return (
 
     <div>
-      <PokemonCard pokemon={pokemon} />
 
-      <nav >
-
-        {pokemonList.map((pokemon) =>
-		<button key={pokemon.name} onClick={() => setPokemonName(pokemon.name)}>
-
-		<img src={pokemon.imgSrc}  style={{ width: '30px', height: '30px' }} />
-
-		<p>{pokemon.name}</p>
-		
-		</button> )
-
-		}
-
-      </nav>
+      <NavBar setPokemonName={setPokemonName} pokemonList={pokemonList} />
+      <PokemonCard key={pokemon.name} pokemon={pokemon} />
 
     </div>
 
